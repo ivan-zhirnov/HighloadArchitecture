@@ -19,7 +19,7 @@ public class Client {
 
                 String response = "";
                 while (!response.equals("correct")) {
-                    System.out.println("Вы что-то хотели сказать? Введите это здесь:");
+                    System.out.println("Type your command:");
                     String word = reader.readLine();
                     out.write(word + "\n");
                     out.flush();
@@ -27,7 +27,7 @@ public class Client {
                     System.out.println(response);
                 }
             } finally {
-                System.out.println("Клиент был закрыт...");
+                System.out.println("Client closed");
                 out.write("close\n");
                 out.flush();
                 clientSocket.close();
