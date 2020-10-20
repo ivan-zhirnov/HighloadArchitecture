@@ -15,7 +15,7 @@ public class Server {
             try  {
                 String response = "";
                 ServerSocket server = new ServerSocket(4004);
-                System.out.println("Сервер запущен!");
+                System.out.println("Server started");
                 clientSocket = server.accept();
                 try {
                     in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
@@ -23,11 +23,13 @@ public class Server {
 
                     response = "W";
                     int random = randomInt(0, 100);
-                    System.out.println("Сгенерированное число:  " + random);
+                    System.out.println("Generated number:  " + random);
                     while (!response.equals("close")) {
                         response = in.readLine();
                         String[] responseWords = response.split(" ");
-                        System.out.println(response);
+                        if (responseWords.length != 2 || !responseWords[0].equals("guess")) {
+                            out.write("Incorrect command\n");
+                        }
                         int responseNumber = Integer.parseInt(responseWords[1]);
                         if (responseNumber > random) {
                             out.write("more\n");
@@ -45,11 +47,11 @@ public class Server {
                     out.close();
                 }
             } finally {
-                System.out.println("Сервер закрыт!");
+                System.out.println("Server closed");
                 server.close();
             }
         } catch (IOException e) {
-            System.err.println(e);
+            System.out.println("Server closed");
         }
     }
 
