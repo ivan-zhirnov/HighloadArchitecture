@@ -1,0 +1,2 @@
+sudo tcpdump -i lo -v tcp port 4004 -w file.pcap
+sudo tcpdump -r file.pcap
