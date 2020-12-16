@@ -1,0 +1,16 @@
+syntax = "proto3";
+package grpc;
+
+message PhoneRequest {
+    string phone = 1;
+    string code = 2;
+}
+
+message PhoneResponse {
+    int64 responseCode = 1;
+    string message = 2;
+}
+
+service PhoneService {
+    rpc checkPhone(PhoneRequest) returns (PhoneResponse);
+}
