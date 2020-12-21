@@ -9,7 +9,9 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import redis.clients.jedis.HostAndPort;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisCluster;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -31,12 +33,12 @@ public class WeatherServiceImpl implements WeatherService {
     private String host;
 
     private final OkHttpClient httpClient;
-    private final Jedis redis;
+    private final JedisCluster redis;
 
     @Autowired
     WeatherServiceImpl(@Value("${redis.port}") int port, @Value("${redis.host}") String host) {
         httpClient = new OkHttpClient();
-        redis = new Jedis(host, port);
+        redis = new JedisCluster(new HostAndPort(host, port));
     }
 
     @Override
