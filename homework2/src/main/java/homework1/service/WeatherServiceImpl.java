@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -17,8 +18,10 @@ import java.util.*;
 @Service
 public class WeatherServiceImpl implements WeatherService {
 
-    private final String apiKey = "0bee9e3a664821530db0e7ef10e1ad6a";
-    private final String url = "https://api.openweathermap.org/data/2.5/";
+    @Value("${openweather.key}")
+    private String apiKey;
+    @Value("${openweather.url}")
+    private String url;
 
     @Override
     public Map<String, Object> getCurrentWeather(String city) {
