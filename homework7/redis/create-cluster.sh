@@ -1,9 +1,9 @@
-redis-cli -p 6379 flushdb &
-redis-cli -p 6380 flushdb &
-redis-cli -p 6381 flushdb &
-redis-cli -p 6382 flushdb &
-redis-cli -p 6383 flushdb &
-redis-cli -p 6384 flushdb &
+#redis-cli -p 6379 flushdb &
+#redis-cli -p 6380 flushdb &
+#redis-cli -p 6381 flushdb &
+#redis-cli -p 6382 flushdb &
+#redis-cli -p 6383 flushdb &
+#redis-cli -p 6384 flushdb &
 
 redis-server a_master.conf &
 redis-server b_master.conf &
